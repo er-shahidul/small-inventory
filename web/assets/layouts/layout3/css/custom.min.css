@@ -1,0 +1,107 @@
+.container {
+    width: auto;
+}
+.page-header {
+    height: auto;
+}
+.page-head .page-title {
+    padding: 10px 0;
+}
+.page-content {
+    padding: 5px 0;
+}
+.breadcrumb {
+    padding: 0 0 7px;
+}
+.page-header .page-header-top {
+    height: auto;
+}
+.page-footer {
+    padding: inherit;
+}
+.page-logo h4 {
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+.page-header .page-header-top .page-logo {
+    width: 420px;
+    height: auto;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+.page-header .page-header-top .top-menu {
+    float: right;
+    margin: auto;
+    padding: 0;
+}
+.container .page-content-inner {
+    background-color: #ffffff;
+}
+.page-sidebar {
+    margin: 15px 15px;
+}
+.custom-th thead tr th{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.dataTables_wrapper .dataTables_processing{
+    position: absolute;
+    top: 50%
+}
+
+.page-header .page-header-top .page-logo img{
+    height: 50px;
+    width: 50px;
+    float: left;
+    margin-top: 2px;
+}
+
+.page-header .page-header-top .page-logo h4{
+    float: left;
+    margin-top: 17px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.input-text{
+    padding: 7px 15px 0 15px;
+}
+
+.sg-datatables-individual-filtering{
+    width: 100%;
+}
+
+/** Datatable */
+table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting {
+    background: none;
+}
+
+.actions .dt-buttons{
+    float: right;
+}
+.actions .dt-buttons a{
+    line-height: 1.5 !important;
+    font-size: 13px;
+    padding: 4px 10px!important;
+    margin-left: 2px;
+}
+
+/** Bootstrap Select */
+.dropdown-header {
+    font-size: 16px;
+    background-color: #ece9e9;
+}
+
+.dataTables_wrapper .filter-cancel-btn,
+[id*=-filter-cancel-]{
+    margin-top: -4px;
+    margin-left: -25px;
+}
+
+/** Budget Distribution */
+th.error-budget-remaining, tr.error-budget-remaining td{
+    color: #d91e18 !important;
+    border-top: 2px solid #d91e18 !important;
+    border-bottom: 2px solid #d91e18 !important;
+}

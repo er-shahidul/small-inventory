@@ -1,0 +1,12 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: my_admin
+    database_user: root
+    database_password: 1
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: admin@admin.com
+    mailer_password: admin
+    secret: 415185a7ac98a138362b8cbbc7bbcf6155f5db25

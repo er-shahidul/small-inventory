@@ -1,0 +1,31 @@
+parameters:
+    user.permission.security_provider.class: Bundle\UserBundle\Permission\Provider\SecurityPermissionProvider
+    user.permission_builder.class: Bundle\UserBundle\Permission\PermissionBuilder
+
+services:
+    security.role_hierarchy:
+        class: Bundle\UserBundle\Permission\RoleHierarchy
+        arguments: ["%security.role_hierarchy.roles%", "@user.permission_builder"]
+
+    user.permission.security_provider:
+        class: "%user.permission.security_provider.class%"
+        tags:
+            - { name: user.permission_provider, alias: user }
+
+    user.permission_builder:
+        class: "%user.permission_builder.class%"
+
+    user.registration.form.type:
+        class: Bundle\UserBundle\Form\Type\UserForm
+        tags:
+            - { name: form.type, alias: user_bundle_user_form }
+        arguments: ['%fos_user.model.user.class%', "@security.authorization_checker"]
+
+    fos_user.group.form.type:
+        class: Bundle\UserBundle\Form\Type\GroupForm
+        tags:
+            - { name: form.type, alias: fos_user_group }
+        arguments: [Bundle\UserBundle\Entity\UserGroup, '@user.permission_builder']
+
+imports:
+  - {resource: 'datatables.yml'}

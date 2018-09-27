@@ -1,0 +1,74 @@
+{% extends "@App/base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}{{ parent() }} : {{ 'User Profile'|trans }} {% endblock %}
+
+{% block body %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+    <!-- BEGIN PAGE CONTENT INNER -->
+    <div class="row" id="volume-list-page">
+        <div class="col-sm-11" style="margin: auto; float: none">
+            {% include '@App/layout-component/flash.html.twig' %}
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption caption-md">
+                        <i class="icon-bar-chart theme-font hide"></i>
+                        <span class="caption-subject theme-font bold uppercase">Profile Update Form </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class='table-data'>
+                        {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div>
+                                        <div class="text-left">
+                                            <img src="{{ asset(user.profile.photo) }}" width="110" height="110" style="margin: auto">
+                                        </div>
+                                    </div>
+                                    {{ form_row(form.profile.photoFile, { 'attr': {'class': 'form-control'} }) }}
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div>
+                                        <label for="user_profile_update_form_profile_cellphone">Username</label>
+                                        <div type="text"class="form-control" style="background: #e0d6d6;">{{ form.vars.value.username }}</div>
+                                    </div>
+                                    <br/>
+                                    {{ form_row(form.profile.cellphone, { 'attr': {'class': 'form-control'} }) }}
+                                    <br/>
+                                    {{ form_row(form.profile.currentAddress, { 'attr': {'class': 'form-control'} }) }}
+                                    <br/>
+                                    {{ form_row(form.profile.designation, { 'attr': {'class': 'form-control'} }) }}
+                                </div>
+
+                                <div class="col-sm-6">
+                                    {{ form_row(form.email, { 'attr': {'class': 'form-control'} }) }}
+                                    <br/>
+                                    {{ form_row(form.profile.fullNameEn, { 'attr': {'class': 'form-control'} }) }}
+                                    <br/>
+                                    {{ form_row(form.profile.permanentAddress, { 'attr': {'class': 'form-control'} }) }}
+                                    <br/>
+                                    {{ form_row(form.profile.dob, { 'attr': {'class': 'form-control'} }) }}
+                                </div>
+                            </div>
+
+                            <hr>
+                            {{ form_row(form.submit, { 'attr': {'class': 'btn green'} }) }}
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- END PAGE CONTENT INNER -->
+{% endblock %}

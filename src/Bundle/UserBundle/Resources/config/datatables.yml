@@ -1,0 +1,6 @@
+services:
+    Bundle\UserBundle\Datatables\UserDatatable:
+        parent: sg_datatables.datatable.abstract
+
+    Bundle\UserBundle\Datatables\GroupDatatable:
+        parent: sg_datatables.datatable.abstract

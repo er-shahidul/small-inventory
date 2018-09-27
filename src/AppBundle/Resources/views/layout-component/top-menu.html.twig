@@ -1,0 +1,26 @@
+<div class="top-menu">
+    <ul class="nav navbar-nav pull-right">
+        <li class="dropdown dropdown-user dropdown-dark">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                <img alt="" class="img-circle" src="{{ app.user.profile.photo is defined ? asset(app.user.profile.photo) : asset('assets/global/img/avatar.png') }}">
+                <span class="username username-hide-mobile">{{ app.user ? app.user.username : '' }}</span>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-default">
+                <li>
+                    <a href="{{ path('fos_user_profile_show') }}">
+                        <i class="icon-user"></i> My Profile </a>
+                </li>
+                <li class="divider"> </li>
+                <li>
+                    <a href="{{ path('user_update_password', {'id': app.user.id} ) }}"><i class="icon-key"></i> Password Edit </a>
+                </li>
+                <li>
+                    <a href="{{ path('fos_user_security_logout') }}"><i class="icon-key"></i> Log Out </a>
+                </li>
+
+            </ul>
+        </li>
+        <!-- END USER LOGIN DROPDOWN -->
+    </ul>
+</div>

@@ -1,0 +1,34 @@
+{% extends "@App/base-register.html.twig" %}
+
+{% block title %}{{ parent() }} | Register{% endblock %}
+{% block pageTitle %}<h1>Register</h1>{% endblock %}
+
+{% form_theme form '@User/_form_template/bootstrap_3_horizontal_layout_user.html.twig' %}
+
+{% block fos_user_content %}
+    <!-- BEGIN PAGE CONTENT INNER -->
+    <div class="row" id="volume-list-page">
+        <div class="col-sm-11" style="margin: auto; float: none">
+            {% include '@App/layout-component/flash.html.twig' %}
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption caption-md">
+                        <i class="icon-bar-chart theme-font hide"></i>
+                        <span class="caption-subject theme-font bold uppercase">Registration Form</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class='table-data'>
+                        {% include "@User/Registration/register_content.html.twig" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- END PAGE CONTENT INNER -->
+{% endblock fos_user_content %}
+
+{% block include_javascripts %}
+    {{ parent() }}
+{% endblock include_javascripts %}

@@ -1,0 +1,91 @@
+{% extends "@App/base.html.twig" %}
+
+{% block title %}{{ 'User Profile'|trans }} | {{ parent() }}{% endblock %}
+{% block pageTitle %}<h1>{{ 'User Profile'|trans }}</h1>{% endblock %}
+
+{% block body %}
+
+    <!-- BEGIN PAGE CONTENT INNER -->
+    <div class="row" id="volume-list-page">
+        <div class="col-sm-11" style="margin: auto; float: none">
+            {% include '@App/layout-component/flash.html.twig' %}
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption caption-md title-text-center">
+                        <i class="icon-bar-chart theme-font hide"></i>
+                        <span class="caption-subject theme-font bold uppercase">{{ "User Profile Information"|trans }}</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="text-center">
+                        <img src="{{ asset(user.profile.photo) }}" width="110" height="110" style="margin: auto">
+                    </div>
+                    <table class="table user-profile">
+                        <tr>
+                            <th width="20%"></th>
+                            <td width="30%"></td>
+                            <th width="20%">{{ 'Full name en'|trans }} : </th>
+                            <td width="30%">{{ user.profile.fullNameEn }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'Cellphone'|trans }} : </th>
+                            <td>{{ user.profile.cellphone }}</td>
+                            <th> </th>
+                            <td> </td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ 'Current address'|trans }} : </th>
+                            <td>{{ user.profile.currentAddress }}</td>
+                            <th>{{ 'Permanent address'|trans }} : </th>
+                            <td>{{ user.profile.permanentAddress }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ 'Designation'|trans }} : </th>
+                            <td>{{ user.profile.designation }}</td>
+                            <th>{{ 'Dob'|trans }} : </th>
+                            <td>{{ user.profile.dob|date('d-m-Y') }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ 'Gender'|trans }} : </th>
+                            <td>{{ user.profile.gender|default('') }}</td>
+                            <th>{{ 'Blood group'|trans }} : </th>
+                            <td>{{ user.profile.bloodGroup }}</td>
+                        </tr>
+
+                    </table>
+                </div>
+
+
+                <div class="portlet-title">
+                    <div class="caption caption-md title-text-center">
+                        <i class="icon-bar-chart theme-font hide"></i>
+                        <span class="caption-subject theme-font bold uppercase text-center">{{ "User Login Information"|trans }}</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <table class="table user-profile">
+                        <tr>
+                            <th width="20%">{{ 'Username'|trans }} : </th>
+                            <td width="30%">{{ user.username }}</td>
+                            <th width="20%">{{ 'Email'|trans }} : </th>
+                            <td width="30%">{{ user.email }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ 'Role'|trans }} : </th>
+                            <td>{{ user.groups[0].name }}</td>
+                            <th>{{ 'Status'|trans }} : </th>
+                            <td>{{ user.enabled ? 'Enable'|trans : 'Disable'|trans }}</td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- END PAGE CONTENT INNER -->
+{% endblock %}

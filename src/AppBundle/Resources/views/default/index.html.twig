@@ -1,0 +1,52 @@
+{% extends "@App/base.html.twig" %}
+{% set pageTitle = 'Dashboard' %}
+{% block title %}{{ parent() }} | Users{% endblock %}
+{% block pageTitle %}<h1>{{ pageTitle }}</h1>{% endblock %}
+{% block page_title %}{{ pageTitle }}{% endblock %}
+
+{% block header_title %}{{ pageTitle }}{% endblock header_title %}
+
+{% block body %}
+    <!-- BEGIN PAGE CONTENT INNER -->
+    <div class="row" id="volume-list-page">
+        <div class="col-sm-12">
+            {% include '@App/layout-component/flash.html.twig' %}
+            {#<div class="portlet light">#}
+
+                {#<div class="portlet-body">#}
+
+                    {#<div class="col-lg-2 col-md-4 col-xs-12">#}
+                        {#<div class="mt-element-ribbon bg-grey-steel">#}
+                            {#<div class="ribbon ribbon-color-default uppercase">Users</div>#}
+                            {#<p class="ribbon-content text-right">#}
+                                {#Total User: {{ totalUser }}#}
+                                {#<a href="{{ path('my-tasks') }}" class="btn btn-success">Go</a>#}
+                            {#</p>#}
+                        {#</div>#}
+                    {#</div>#}
+
+                {#</div>#}
+            {#</div>#}
+            {#<div class="portlet light">#}
+
+                {#<div class="portlet-body">#}
+
+                    {#<div class="col-lg-2 col-md-4 col-xs-12">#}
+                        {#<div class="mt-element-ribbon bg-grey-steel">#}
+                            {#<div class="ribbon ribbon-color-default uppercase">Terminal Issue</div>#}
+                            {#<p class="ribbon-content text-right">#}
+                                {#Total Issue: {{ totalTerminalIssue }}#}
+                                {#<a href="{{ path('my-tasks') }}" class="btn btn-success">Go</a>#}
+                            {#</p>#}
+                        {#</div>#}
+                    {#</div>#}
+
+                {#</div>#}
+            {#</div>#}
+        </div>
+
+    </div>
+
+
+    <!-- END PAGE CONTENT INNER -->
+{% endblock %}
