@@ -19,7 +19,7 @@ trait BlameableEntity
      *
      * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Bundle\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="created_by")
+     * @ORM\JoinColumn(name="CREATED_BY")
      */
     private $createdBy;
 
@@ -28,7 +28,7 @@ trait BlameableEntity
      *
      * @Gedmo\Blameable(on="update", field={"stepRemarks"})
      * @ORM\ManyToOne(targetEntity="Bundle\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="updated_by")
+     * @ORM\JoinColumn(name="UPDATED_BY")
      */
     protected $updatedBy;
 

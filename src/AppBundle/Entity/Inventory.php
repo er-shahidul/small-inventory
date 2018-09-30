@@ -1,7 +1,10 @@
 <?php
 namespace AppBundle\Entity;
 
+use AppBundle\Traits\BlameableEntity;
+use AppBundle\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Traits\SoftDeleteableEntity;
 use Symfony\Component\Validator\Constraints AS Assert;
 
 /**
@@ -12,6 +15,8 @@ use Symfony\Component\Validator\Constraints AS Assert;
  */
 class Inventory     // work order accept and product receive than modify field
 {
+    use BlameableEntity, TimestampableEntity, SoftDeleteableEntity;
+
     /**
      * @ORM\Id
      * @ORM\Column(name="ID", type="integer")

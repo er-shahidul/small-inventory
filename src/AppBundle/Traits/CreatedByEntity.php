@@ -19,7 +19,7 @@ trait CreatedByEntity
      *
      * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Bundle\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="created_by")
+     * @ORM\JoinColumn(name="CREATED_BY")
      */
     private $createdBy;
 

@@ -2,6 +2,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Traits\BlameableEntity;
+use AppBundle\Traits\TimestampableEntity;
+use AppBundle\Traits\SoftDeleteableEntity;
 use Symfony\Component\Validator\Constraints AS Assert;
 
 /**
@@ -12,6 +15,8 @@ use Symfony\Component\Validator\Constraints AS Assert;
  */
 class History       // work order accept and product receive than add a row
 {
+    use BlameableEntity, TimestampableEntity, SoftDeleteableEntity;
+
     /**
      * @ORM\Id
      * @ORM\Column(name="ID", type="integer")

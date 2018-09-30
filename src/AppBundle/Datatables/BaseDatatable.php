@@ -135,6 +135,7 @@ class BaseDatatable extends AbstractDatatable
                 'scroll_collapse' => false,
                 'search_delay' => 500,
                 'state_duration' => 7200,
+                'page_length' => 100,
                 'stripe_classes' => array(),
                 'classes' => Style::BOOTSTRAP_3_STYLE,
                 'individual_filtering' => false,
