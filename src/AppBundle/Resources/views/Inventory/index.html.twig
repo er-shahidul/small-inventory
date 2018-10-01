@@ -17,6 +17,12 @@
                         <span class="caption-subject theme-font bold uppercase">{{ 'List of Inventory'|trans }}</span>
                     </div>
                     <div class="actions">
+                        {{ form_start(form, {'method': 'POST', 'action' : '/inventory/create', 'attr': {'novalidate': 'novalidate'}}) }}
+
+
+                        {{ form_end(form) }}
+                    </div>
+                    <div class="actions">
                         <a href="{{ path('inventory_sync_home') }}" class="btn green">
                             <i class="fa fa-plus"></i> {{ 'Inventory Sync'|trans }}</a>
                     </div>

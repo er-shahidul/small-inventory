@@ -45,21 +45,21 @@ class Inventory     // work order accept and product receive than modify field
      *
      * @ORM\Column(name="QUANTITY", type="integer", length=11 , nullable=true)
      */
-    protected $quantity;
+    protected $quantity=0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="ON_HAND", type="integer", length=11 , nullable=true)
      */
-    protected $onHand;
+    protected $onHand=0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="ON_LOCK", type="integer", length=11 , nullable=true)
      */
-    protected $onLock;
+    protected $onLock=0;
 
     /**
      * @var string

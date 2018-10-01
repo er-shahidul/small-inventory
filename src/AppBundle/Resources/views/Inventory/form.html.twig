@@ -2,7 +2,7 @@
 
 {% block title %}{{ 'Inventory'|trans }} | {{ parent() }}{% endblock %}
 {% block pageTitle %}<h1>{{ 'Inventory'|trans }}</h1>{% endblock %}
-{% form_theme form '@User/_form_template/bootstrap_3_horizontal_layout_user.html.twig' %}
+{#{% form_theme form '@User/_form_template/bootstrap_3_horizontal_layout_user.html.twig' %}#}
 
 {% block body %}
     <!-- BEGIN PAGE CONTENT INNER -->
@@ -18,18 +18,31 @@
                         </span>
                     </div>
                     <div class="actions">
-                        <a href="{{ path('products_home') }}" class="btn green">
+                        <a href="{{ path('inventories_home') }}" class="btn green">
                             <i class="fa fa-plus"></i> {{ 'Back To The List'|trans }}</a>
                     </div>
                 </div>
                 <div class="portlet-body">
                     <div class='table-data'>
-
-                        {{ form_start(form, {'method': 'POST', 'attr': {'novalidate': 'novalidate'}}) }}
-
-
-                        {{ form_end(form) }}
-
+                        Bank Name : {{ institution.name }}
+                        <ul>
+                            <form method="post">
+                            {% for inventory in inventories %}
+                                <table>
+                                    <tr>
+                                        <td>
+                                            {{ inventory.product.name }}
+                                        </td>
+                                        <td>
+                                            <input name="{{ inventory.id }}" type="text" value="0"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            {% endfor %}
+                                <input value="{{ institution.id }}" name="institution_id" type="text"/>
+                                <input type="submit" name="inv_submit" value="save"/>
+                            </form>
+                        </ul>
                     </div>
                 </div>
             </div>

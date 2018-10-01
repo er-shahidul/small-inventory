@@ -3,8 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Datatables\InventoryDatatable;
+use AppBundle\Entity\History;
+use AppBundle\Entity\Institution;
 use AppBundle\Entity\Inventory;
 use AppBundle\Entity\Product;
+use AppBundle\Form\Search\InstitutionForm;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sg\DatatablesBundle\Datatable\DatatableInterface;
@@ -22,6 +25,9 @@ class InventoryController extends BaseController
      */
     public function indexAction(Request $request)
     {
+        $data = $request->query->get('');
+        $formSearch = $this->createForm(InstitutionForm::class, $data);
+
         /** @var DatatableInterface|Response $datatable */
         $datatable = $this->prepareDatatable(InventoryDatatable::class, $request->isXmlHttpRequest(), function($qb)
         {
@@ -34,7 +40,59 @@ class InventoryController extends BaseController
 
         return $this->render('AppBundle:Inventory:index.html.twig', array(
             'datatable' => $datatable,
+            'form'      => $formSearch->createView()
         ));
+    }
+
+    /**
+     * @Route("/inventory/create", name="inventory_create", options={"expose"=true})
+     * @Template("@App/Inventory/form.html.twig")
+     * @param Request $request
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function createAction(Request $request)
+    {
+        if( $request->request->get('institution')["institution"] == null && $request->get('institution_id') == null ){
+            return $this->redirect($this->generateUrl('inventories_home'));
+        }
+
+        $institutionID = $request->request->get('institution')["institution"]?$request->request->get('institution')["institution"]:$request->get('institution_id');
+        $institution = $this->getDoctrine()->getRepository('AppBundle:Institution')->find($institutionID);
+        $inventories = $this->getDoctrine()->getRepository('AppBundle:Inventory')->findByInstitution($institution);
+
+        if (isset($_POST['inv_submit'])) {
+            foreach ($inventories as $inventory){
+                $qty = $inventory->getQuantity()+$_POST[$inventory->getId()];
+                $onHand =  $inventory->getOnHand()+$_POST[$inventory->getId()];
+                $inventory->setQuantity($qty);
+                $inventory->setOnHand($onHand);
+                $this->getDoctrine()->getRepository('AppBundle:Inventory')->update($inventory);
+
+                if($_POST[$inventory->getId()]>0) {
+                    $history = new History();
+                    $history->setInOut('IN');
+                    $history->setWorkOrder("");
+                    $history->setInstitution($inventory->getInstitution());
+                    $history->setQuantity($qty);
+                    $history->setProduct($inventory->getProduct());
+                    $history->setType($inventory->getType());
+
+                    $this->getDoctrine()->getRepository('AppBundle:History')->create($history);
+                }
+            }
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Inventory Added Successfully'
+            );
+
+            return $this->redirect($this->generateUrl('inventories_home'));
+        }
+
+        return array(
+            'inventories' => $inventories,
+            'institution' => $institution
+        );
     }
 
     /**
